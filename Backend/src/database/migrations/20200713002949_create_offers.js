@@ -6,7 +6,7 @@ exports.up = function(knex) {
     table.integer('priceNew').notNullable();
     table.string('ref_product').notNullable()
     
-    table.foreign('ref_product').references('productID').inTable('products');
+    // table.foreign('ref_product').references('productID').inTable('products');
 
     
   })

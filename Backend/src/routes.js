@@ -1,42 +1,14 @@
 const express = require('express');
 const routes = express.Router();
 const connection = require('./database/connection')
+const ProductsController = require('./controllers/productsController')
 
 
-routes.post('/products', async (req, res)=>{
-const { 
-   name,
-   price,
-   category,
-   disponibility,
-   originalPack,
-   description,
-   mark,
-   productID,
-   peso,
-   dimensions,
-   quantidade,
-    } = req.body;
-
-    const id = Math.random()
-
- await connection('products').insert({
-  id,
-  name,
-   price,
-   category,
-   disponibility,
-   originalPack,
-   description,
-   mark,
-   productID,
-   peso,
-   dimensions,
-   quantidade,
- })
- return res.json({ id, productID, disponibility});
-})
-
+routes.post('/products', ProductsController.create )
+routes.put('/products/:id', ProductsController.update )
+routes.delete('/products/:id', ProductsController.remove )
+routes.get('/products', ProductsController.store)
+routes.get('/products/:category', ProductsController.storeFilter)
 
 routes.post('/offers', async (req, res)=>{
   const { 
