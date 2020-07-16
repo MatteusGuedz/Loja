@@ -2,21 +2,23 @@ const express = require('express');
 const routes = express.Router();
 
 const multer = require('multer')
-const multerConfig = require('./config/multer')
+const multerConfigImages = require('./config/multerImages')
+const multerConfigImage = require('./config/multerImage')
 
 const connection = require('./database/connection')
 const ProductsController = require('./controllers/productsController')
 
-const upload = multer(multerConfig)
+const uploadImages = multer(multerConfigImages)
+const uploadImage = multer(multerConfigImage)
 
-routes.post('/products', upload.single('image'), ProductsController.createProduct )
+routes.post('/products', uploadImage.single('image'), ProductsController.createProduct )
 routes.delete('/product', ProductsController.removeProduct )
 routes.put('/product', ProductsController.updateProduct )
 routes.get('/products', ProductsController.listProduct)
 routes.get('/products/category/:category', ProductsController.listFilter)
 routes.get('/product', ProductsController.listerUnic)
 
-routes.post('/images', upload.single('image'), ProductsController.createImage )
+routes.post('/images', uploadImages.single('image'), ProductsController.createImage )
 routes.get('/images', ProductsController.listImages )
 routes.get('/image', ProductsController.removeImage )
 

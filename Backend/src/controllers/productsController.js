@@ -1,5 +1,6 @@
 const connection = require('../database/connection') 
 const generateID = require('../utils/generateID') 
+const fs = require('fs')
 module.exports = {
 
   
@@ -119,7 +120,7 @@ module.exports = {
         }
         
       })
-      .catch(err => res.status(400).json(err))
+      .catch(err => response.status(400).json(err))
     },
 
     async listProduct(request, response){
@@ -128,8 +129,12 @@ module.exports = {
 
         const serializedProducts = products.map(product => {
           return {
-            ...product,
-            image_url: `http://192.168.1.12:3000/uploads/products/${product.image}`
+            name: product.name,
+            price: product.price,
+            category: product.category,
+            product_id: product.product_id,
+            disponibility: product.disponibility,
+            image_url: `${process.env.LOCALHOST}/uploads/productsMain/${product.image}`
           }
        })
 
@@ -137,33 +142,66 @@ module.exports = {
     },
 
     async listFilter(request, response){
-      await connection('products')
+      const products = await connection('products')
       .where({category: request.params.category})
-      .then(products => response.json(products) )
-      .catch( err => response.status(400).json(err))
+      .select('*')
+
+      const serializedProducts = products.map(product => {
+        return {
+          name: product.name,
+          price: product.price,
+          category: product.category,
+          product_id: product.product_id,
+          disponibility: product.disponibility,
+          image_url: `${process.env.LOCALHOST}/uploads/productsMain/${product.image}`
+        }
+     })
+
+     return response.json(serializedProducts)
     },
     
 
     async listerUnic(request, response){
       
-      const {product_id} = request.query;
+      const {product_id} = request.query;   
 
-    await connection('products')
-      .where({product_id: product_id})
-      .first()
-      .then( product => {
+      try {
+  
+        const product =  await connection('products')
+        .where({product_id: product_id})
+        .first()
+  
         if(!product){
-          const msg = `Houve um problema ao acessar as 
-          informações do produto com o ID ${product_id}.`  
+          const msg = `O produto não existe!`
           return response.status(400).send(msg)
-        } else {
-          
-          return response.json(product)
         }
-      })
-      .catch( err => response.status(400).json(err))
-      
-
+  
+        const images = await connection('images')
+          .where({ref_id: product_id})
+          .select('*')
+  
+          
+  
+        const resultImage = images.map(  img => {
+          
+            return {
+              imagem: img.image,
+              id_product: img.ref_id,
+              img_url:`${process.env.LOCALHOST}/uploads/products/${img.image}`
+            }
+          })
+  
+        productDetail = {
+          ...product,
+          imagesDetails: resultImage,
+          imageMain_url: `${process.env.LOCALHOST}/uploads/productsMain/${product.image}`
+        }
+  
+       return response.json(productDetail)
+  
+      }catch(e){
+        return response.status(400).send(e)
+      }
     },
 
     async createImage(request, response){
@@ -190,41 +228,60 @@ module.exports = {
         const serializedImages = imagens.map(image => {
           return {
             ...image,
-            image_url: `http://192.168.1.12:3000/uploads/products/${image.image}`
+            image_url: `${process.env.LOCALHOST}/uploads/products/${image.image}`
           }
 
        })
 
        return response.json(serializedImages)
 
+
     },
     
     async removeImage(request, response){
-      
       const { product_id, id_image } = request.query;
 
-
-      const imagens = await connection('images')
-        .where({ref_id: product_id})
-        .where({id: id_image})
-        .first()
-        .del()
-        .then( rowsDeleted =>  {
-          if(rowsDeleted > 0){
-            return response.status(204).send()
-          } else {
-            const msg = `Não foi encontrado nenhuma imagem com o ID 
-            ${id_image}.`
-            return response.status(400).send(msg)
-          }
-        })
-        .catch(err => res.status(400).json(err))
-
-        
-
-    
-
-      
+  
+      try {
+ 
+       const imagem = await connection('images')
+       .where({ref_id: product_id})
+       .where({id: id_image})
+       .first()
+ 
+       console.log(` Primeira Req da Rota  imagem = ${imagem.image}`)
+       
+       const rowsDelete = await connection('images')
+       .where({ref_id: product_id})
+       .where({id: id_image})
+       .first()
+       .del()
+ 
+       if(rowsDelete > 0){
+         console.log(` Primeira Req da Rota  imagem = ${imagem.image}`)
+         fs.unlink(`./uploads/products/${imagem.image}`, err => {
+           if (err) {
+             console.log("falha ao deletar imagem local: \n"+ err );
+         } else {
+             console.log('successfully deleted local image');                                
+         }
+         })
+         
+ 
+         const msg = `A Imagem foi Excluida!`
+         return response.send(msg).status(204)
+       } else {
+ 
+         return response.send('Nenhuma Imagem foi Excluida.').status(400)
+       }
+ 
+ 
+ 
+     
+ 
+      } catch (e){
+       return response.status(500).json(e)
+      }
     }
   }
   
