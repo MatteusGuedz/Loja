@@ -1,17 +1,20 @@
 const connection = require('../database/connection') 
-const generateID = require('../utils/generateID') 
+// const generateID = require('../utils/generateID') 
+const rimraf = require('rimraf')
 const fs = require('fs')
 module.exports = {
 
   
     async createProduct(request, response){
+      // const  productID = generateID()
+
       const {
-  
         name,
         price,
         category,
         disponibility,
         originalPack,
+        product_id,
         description,
         mark,
         peso,
@@ -19,7 +22,6 @@ module.exports = {
         quantidade,
          } = request.body;
          
-      const  productID = generateID()
 
     
         const product = {
@@ -31,7 +33,7 @@ module.exports = {
           originalPack,
           description,
           mark,
-          product_id: productID,
+          product_id,
           peso,
           dimensions,
           quantidade,
@@ -105,19 +107,38 @@ module.exports = {
     },
 
     async removeProduct(request, response){
+      console.log('Entrou na rota')
+      const { product_id} = request.query;
 
-      const { product_id } = request.query;
+      await connection('images')
+        .where({ref_id: product_id})
+        .select('*')
+        .del()
+        .then( rowsDelete => {
+          console.log(`Apagou ${rowsDelete} linha inTable imagens`)
+        })
+
+
+
+      await rimraf(`./uploads/products/${product_id}`,() => {
+        console.log('Apagou a pasta')
+      })
+
       await connection('products')
       .where({product_id: product_id})
       .del()
       .then( rowsDelete => {
         if(rowsDelete > 0){
+          
+       console.log('Apagou o produto')
           return response.status(204).send()
         } else {
           const msg = `Não foi encontrado nenhum produto com o ID 
           ${request.params.id}.`
           return response.status(400).send(msg)
         }
+
+
         
       })
       .catch(err => response.status(400).json(err))
@@ -127,6 +148,8 @@ module.exports = {
     const products =  await connection('products')
         .select('*')
 
+        
+
         const serializedProducts = products.map(product => {
           return {
             name: product.name,
@@ -134,7 +157,7 @@ module.exports = {
             category: product.category,
             product_id: product.product_id,
             disponibility: product.disponibility,
-            image_url: `${process.env.LOCALHOST}/uploads/productsMain/${product.image}`
+            image_url: `${process.env.LOCALHOST}/uploads/products/${product.product_id}/imageMain/${product.image}`
           }
        })
 
@@ -187,14 +210,14 @@ module.exports = {
             return {
               imagem: img.image,
               id_product: img.ref_id,
-              img_url:`${process.env.LOCALHOST}/uploads/products/${img.image}`
+              img_url:`${process.env.LOCALHOST}/uploads/products/${product_id}/imagesDetails/${img.image}`
             }
           })
   
         productDetail = {
           ...product,
           imagesDetails: resultImage,
-          imageMain_url: `${process.env.LOCALHOST}/uploads/productsMain/${product.image}`
+          imageMain_url: `${process.env.LOCALHOST}/uploads/products/${product_id}/imageMain/${product.image}`
         }
   
        return response.json(productDetail)
@@ -213,7 +236,8 @@ module.exports = {
       }
       
       
-     await connection('images').insert(imagem)
+     
+  await connection('images').insert(imagem)
       return response.json(imagem)
     },
 
@@ -228,7 +252,7 @@ module.exports = {
         const serializedImages = imagens.map(image => {
           return {
             ...image,
-            image_url: `${process.env.LOCALHOST}/uploads/products/${image.image}`
+            image_url: `${process.env.LOCALHOST}/uploads/products/${product_id}/imagesDetails/${image.image}`
           }
 
        })
@@ -258,8 +282,8 @@ module.exports = {
        .del()
  
        if(rowsDelete > 0){
-         console.log(` Primeira Req da Rota  imagem = ${imagem.image}`)
-         fs.unlink(`./uploads/products/${imagem.image}`, err => {
+         console.log(` Segunda Req da Rota  imagem = ${imagem.image}`)
+         fs.unlink(`./uploads/products/${product_id}/imagesDetails/${imagem.image}`, err => {
            if (err) {
              console.log("falha ao deletar imagem local: \n"+ err );
          } else {
