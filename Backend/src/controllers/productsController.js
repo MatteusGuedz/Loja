@@ -19,6 +19,7 @@ module.exports = {
         mark,
         peso,
         dimensions,
+        material,
         quantidade,
          } = request.body;
          
@@ -36,15 +37,32 @@ module.exports = {
           product_id,
           peso,
           dimensions,
+          material,
           quantidade,
           }
 
+          try {
 
+           const  produtosExists =  await connection('products')
+              .where({product_id: product_id})
+              .select('*')
+
+              if(Number(produtosExists) == 0 ){
+                await connection('products').insert(product)
+                return response.json(product)
+              } else {
+                return response.send('O Produto ja existe.')
+              }
+            
+
+          }catch (e){
+
+            return response.status(400).send(e)
+          }
       
         
 
-        await connection('products').insert(product)
-        return response.json(product)
+        
   
     },
 
@@ -52,13 +70,17 @@ module.exports = {
      
       const {product_id} = request.query;
 
+
       const updateProduct = (request, response, product) => {
-         connection('products')
-          .where({product_id: product_id})
-          .update(product)  
-          .then(_ => response.status(204).send())
-          .catch( err =>  response.status(400).json(err))
-        }
+        connection('products')
+         .where({product_id: product_id})
+         .update(product)  
+         .then(_ => response.status(204).send())
+         .catch( err =>  response.status(400).json(err))
+       }
+
+
+     
 
       const { 
         name,
@@ -183,7 +205,6 @@ module.exports = {
      return response.json(serializedProducts)
     },
     
-
     async listerUnic(request, response){
       
       const {product_id} = request.query;   
@@ -223,6 +244,7 @@ module.exports = {
        return response.json(productDetail)
   
       }catch(e){
+        
         return response.status(400).send(e)
       }
     },
