@@ -29,7 +29,8 @@ routes.get('/image', ProductsController.removeImage )
 
 
 // users
-routes.post('/users', UserController.save)
+routes.post('/signup', UserController.signup)
+routes.post('/signin', UserController.signin)
 
   
 
