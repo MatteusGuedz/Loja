@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jwt-simple')
 
 
+
 module.exports = {
 
   async signup(request, response){

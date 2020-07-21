@@ -25,11 +25,12 @@ module.exports = () => {
          .catch( err => done(err, false))
   })
 
+
   passport.use(strategy)
 
   return {
     initialize: () => passport.initialize(),
     authenticate: () => passport.authenticate('jwt', {session:false}),
-
+   
   }
 }
