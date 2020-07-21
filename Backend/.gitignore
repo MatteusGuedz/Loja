@@ -1,5 +1,3 @@
 node_modules
 uploads/products/*
-!uploads/products/.gitkeep
-!uploads/.gitkeep
 .env
