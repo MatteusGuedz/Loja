@@ -30,7 +30,7 @@ module.exports = () => {
 
   return {
     initialize: () => passport.initialize(),
-    authenticate: () => passport.authenticate('jwt', {session:false}),
+    authenticate: () => passport.authenticate('jwt'),
    
   }
 }

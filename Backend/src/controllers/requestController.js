@@ -12,7 +12,6 @@ module.exports = {
         whats,      
       } = request.body;
 
-      const {id_user} = request.query;
 
 
       const infos = {
@@ -22,19 +21,23 @@ module.exports = {
         city,
         email, 
         whats,
-        user_id:Number(id_user)
+        user_id: request.query.user_id,
       }
 
       
       const AllAndress = await connection('delivery_info')  
-        .where({user_id: id_user})
+        .where({user_id: request.query.user_id})
         .select('*')
 
         if(AllAndress.length >= 3){
           return response.send('Não é possivel cadastrar mais de 3 endereços!')
         } else {
-          await connection('delivery_info').insert(infos)
-          return response.json(infos)
+          await connection('delivery_info')
+              .insert(infos)
+              .then(_ => response.status(200).send('Adicionado'))
+              .catch(err => response.status(400).json(err))
+
+          
         }
 
       
@@ -76,19 +79,23 @@ module.exports = {
     const {id_user} = request.query
 
 
-   const myrequests =  await connection('requests')
+   await connection('requests')
         .where({user_id: id_user})
+        .orderBy('id')
         .select('*')
+        .then( requests => response.json(requests))
+        .catch (err => response.status(400).json(err))
   
-        return response.json(myrequests)
+        
   },
 
   async listMysAndress(request, response){
-    const {user_id} = request.query
+
 
     
     const AllAndress = await connection('delivery_info')  
-        .where({user_id: user_id})
+        .where({user_id: request.query.user_id})
+        .orderBy('id')
         .select('*')
 
        
@@ -138,7 +145,7 @@ module.exports = {
     } = request.body
 
     const requestUp = {
-      quantidade,
+      quantidade: Number(quantidade),
       message,   
     }
 
@@ -156,11 +163,11 @@ module.exports = {
   },
 
   async removeAndress(request, response){
-      const {id_user, id_andress} = request.query
+      const {id_user} = request.query
 
       await connection('delivery_info')
-        .where({user_id:id_user})
-        .where({id: id_andress})
+        .where({user_id: id_user})
+        .where({id: request.params.id})
         .first()
         .del()
         .then( rowsDelete => {

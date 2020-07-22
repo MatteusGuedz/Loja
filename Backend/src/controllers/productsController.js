@@ -130,10 +130,9 @@ module.exports = {
 
     async removeProduct(request, response){
       console.log('Entrou na rota')
-      const { product_id} = request.query;
 
       await connection('images')
-        .where({ref_id: product_id})
+        .where({ref_id: request.params.id})
         .select('*')
         .del()
         .then( rowsDelete => {
@@ -142,12 +141,12 @@ module.exports = {
 
 
 
-      await rimraf(`./uploads/products/${product_id}`,() => {
+      await rimraf(`./uploads/products/${request.params.id}`,() => {
         console.log('Apagou a pasta')
       })
 
       await connection('products')
-      .where({product_id: product_id})
+      .where({product_id:request.params.id})
       .del()
       .then( rowsDelete => {
         if(rowsDelete > 0){
