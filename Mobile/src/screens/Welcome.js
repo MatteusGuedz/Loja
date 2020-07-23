@@ -3,16 +3,21 @@ import Button from '../components/Button'
 import { StyleSheet, View, Image, Text, StatusBar} from 'react-native'
 
 const God = require('../assets/godofwar1.png')
+const Logo = require('../assets/logo.png')
 
 
 const Welcome = () => {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#010101"/>
-      <Text style={styles.text}> Tower of Collectibles </Text>
+      <StatusBar barStyle="light-content" />
+      
+      <Image 
+        style={styles.logo}
+        source={Logo} />
 
-      <Image source={God}  
-      style={styles.imgGOD}/>
+      <Image 
+        style={styles.imgGOD}
+        source={God} />
 
       <Button />
 
@@ -28,6 +33,12 @@ const styles = StyleSheet.create({
    alignItems: 'center',
 
  }, 
+ logo:{
+      position: 'absolute',
+      left:5,
+      top: 20,
+   
+ },
 
  imgGOD:{
    position: 'absolute',
@@ -36,14 +47,7 @@ const styles = StyleSheet.create({
    bottom:0,
    right:-50,
  },
- text:{
-   color: '#fff',
-   fontSize:48,
-   marginLeft:20,
-   marginTop:20,
-   textAlign:"justify",
 
- }
 })
 
 export default Welcome;
