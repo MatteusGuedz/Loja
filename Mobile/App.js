@@ -1,11 +1,11 @@
 import React from 'react';
-import  Explore from './src/screens/Explore'
+import  Detail from './src/screens/Details'
 
 
 export default function App() {
   return (
     
-      <Explore />
+      <Detail />
       // <StatusBar style="auto" />
    
   );

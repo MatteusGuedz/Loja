@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, StatusBar, Text,ScrollView} from 'react-native';
-import Header from '../components/Header'
+import { Header1 }from '../components/Header'
 import BotContent from '../components/BotContent'
 import Scroll from '../components/ScrollItem'
 import Card from '../components/Card'
@@ -12,12 +12,18 @@ const Explore = () => {
     <View style={styles.container}>
 
     <StatusBar barStyle="light-content" />   
-    <Header Name="shopping-cart" Color="#fff"/>
+    <Header1 />
+    <ScrollView>
+
     <Text style={styles.title}> Explore Figures!</Text>
 
     <Scroll />
     <BotContent>
 
+     <Card BACK="#BF4A45"/>
+     <Card BACK="#C07673"/>
+     <Card />
+     <Card />
      <Card />
      <Card />
      <Card />
@@ -25,6 +31,7 @@ const Explore = () => {
   
  
     </BotContent>
+    </ScrollView>
    
     </View>
     )

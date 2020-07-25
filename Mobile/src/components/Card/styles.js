@@ -12,8 +12,18 @@ export const Container = styled.View`
   margin-bottom:15px;
   align-items: center;
   width: ${WTH} ;
-  padding: 15px;
   
+  
+
+`;
+export const VIcon = styled.TouchableOpacity`
+  position: absolute;
+  right: 3px;
+  top:7px;
+
+  
+  
+
 `;
 
 export const Image = styled.Image`
@@ -21,6 +31,17 @@ export const Image = styled.Image`
   height:100;
   
 
+`;
+
+export const InfoContainer = styled.View`
+  border-top-width: 1px;
+  border-top-color: #010101;
+  background-color: #eee;
+  width:100%;
+  padding-bottom:15px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  
 `;
 
 
@@ -32,11 +53,16 @@ export const Title = styled.Text`
 export const Mark = styled.Text`
  text-align: center;
  font-weight: 400;
- color: #cecece; 
+ color: #999; 
   
 `;
 
 export const Price = styled.Text`
   margin-top: 5px;
   font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+`;
+export const Cif = styled.Text`
+  color: #BF4a45;
 `;

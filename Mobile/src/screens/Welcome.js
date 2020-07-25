@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button'
+import Button from '../components/ButtonHome'
 import { StyleSheet, View, Image, Text, StatusBar} from 'react-native'
 
 const God = require('../assets/godofwar1.png')

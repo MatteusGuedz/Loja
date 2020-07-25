@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Scroll, BtnItem, Text,  Container } from './styles';
 
 const ScrollItem = () => {
+
+  const {selected, setSelected} = useState();
+  
   return (
     <Container>
     
@@ -14,16 +17,16 @@ const ScrollItem = () => {
       alignItems:'center'
     }}
     >
-      <BtnItem>
+      <BtnItem >
       <Text> Anime </Text>
       </BtnItem>
 
 
-      <BtnItem>
+      <BtnItem selected>
       <Text> Heroes </Text>
       </BtnItem>
 
-      <BtnItem>
+      <BtnItem >
       <Text> Comic </Text>
       </BtnItem>
 
