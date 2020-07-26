@@ -1,12 +1,15 @@
 import React from 'react';
 import Button from '../components/ButtonHome'
 import { StyleSheet, View, Image, Text, StatusBar} from 'react-native'
+import { useNavigation  } from '@react-navigation/native';
 
 const God = require('../assets/godofwar1.png')
 const Logo = require('../assets/logo.png')
 
 
 const Welcome = () => {
+  const navigation = useNavigation()
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -19,7 +22,7 @@ const Welcome = () => {
         style={styles.imgGOD}
         source={God} />
 
-      <Button />
+      <Button Navegar={() => navigation.navigate('Explore')} />
 
     </View>
     )

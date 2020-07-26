@@ -2,7 +2,15 @@ import React, {useState} from 'react';
 import { Scroll, BtnItem, Text,  Container } from './styles';
 
 const ScrollItem = () => {
+  const Items = [
+    'Anime',
+    'Heroes',
+    'Comic',
+    'Decoration',
+    'Girl',
+    'Boy',
 
+  ]
   const {selected, setSelected} = useState();
   
   return (
@@ -15,27 +23,24 @@ const ScrollItem = () => {
     contentContainerStyle={{ 
       paddingHorizontal: 20,
       alignItems:'center'
-    }}
-    >
-      <BtnItem >
-      <Text> Anime </Text>
+    }}>
+
+      <BtnItem  selected={true}>
+        <Text> Teste </Text>
       </BtnItem>
 
+      {
+      Items.map((item, i) =>(
+        <BtnItem  selected={false}  key={i}>
+        <Text> {item} </Text>
+        </BtnItem>
+      ))
+      }
 
-      <BtnItem selected>
-      <Text> Heroes </Text>
-      </BtnItem>
+     
 
-      <BtnItem >
-      <Text> Comic </Text>
-      </BtnItem>
+      
 
-      <BtnItem>
-      <Text> Girl </Text>
-      </BtnItem>
-       
-       
-    
 
 
     </Scroll>

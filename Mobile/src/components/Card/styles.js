@@ -5,13 +5,14 @@ const { width} = Dimensions.get('window')
 
 const WTH = Math.round((width - 45) / 2)  
 
-
 export const Container = styled.View`
   background-color: #fff;
   border-radius: 3px;
   margin-bottom:15px;
   align-items: center;
+  height:220px;
   width: ${WTH} ;
+  margin-right: ${props => props.Space ? 20 : 1};
   
   
 
@@ -20,6 +21,9 @@ export const VIcon = styled.TouchableOpacity`
   position: absolute;
   right: 3px;
   top:7px;
+  padding:3px;
+  border-radius: 10px;
+  background-color: transparent;
 
   
   

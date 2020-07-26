@@ -1,17 +1,34 @@
 import React from 'react';
-// import { View } from 'react-native';
-import {
-  But,
-  Text
-} from './styles'
+import { RectButton } from 'react-native-gesture-handler';
+import { Text, StyleSheet} from 'react-native'
 
 
-const  Button = () => {
+const  Button = ({ Navegar }) => {
   return (
-    <But>
-      <Text> Go Store </Text>
-    </But>
+    <RectButton  style={styles.But} onPress={Navegar}>
+      <Text style={styles.txt}> Go Store </Text>
+    </RectButton>
     )
 }
+
+
+const styles = StyleSheet.create({
+ But:{
+  position: 'absolute',
+  width: '80%',
+  height:60,
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#BF4A45',
+  borderRadius: 8,
+  bottom: 70,
+ },
+
+ txt:{
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: '#fff',
+ }
+})
 
 export default Button;

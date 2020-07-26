@@ -4,6 +4,7 @@ import {Header2} from '../components/Header'
 import Label from '../components/LabelInfo'
 import ButtonSimple from '../components/buttonSimple'
 import Carroussel from '../components/Carrousel'
+import MoreScroll from '../components/ScrollMoreProducts'
 import { 
   View,
   StatusBar,
@@ -52,6 +53,14 @@ const Detail = () => {
             </View>
 
     </View>
+
+
+
+     <MoreScroll />
+     <MoreScroll />
+
+
+
     </ScrollView>
   </View>
   )

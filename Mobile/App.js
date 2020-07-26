@@ -1,11 +1,11 @@
 import React from 'react';
-import  Detail from './src/screens/Details'
+import  Routes from './src/routes'
 
 
 export default function App() {
   return (
     
-      <Detail />
+      <Routes />
       // <StatusBar style="auto" />
    
   );
