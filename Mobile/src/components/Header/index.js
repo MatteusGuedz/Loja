@@ -8,9 +8,6 @@ import { useNavigation  } from '@react-navigation/native';
 const Header1 = () => {
   const navigation = useNavigation()
 
- 
-
-
   return (
     
     <Head>
@@ -18,7 +15,7 @@ const Header1 = () => {
         <Icon1 name="arrow-left" size={24} color="#fff" />
       </TouchI>  
 
-       <TouchI style={styles.CarBtn}>
+       <TouchI style={styles.CarBtn} onPress={() => navigation.navigate('Cart')}>
          
         <Icon1 name="shopping-cart" color="#fff" size={24}/>
         <View style={styles.LabelCar}>
@@ -56,6 +53,27 @@ const Header2 = () => {
 }
 
 
+
+const Header3 = () => {
+
+  const navigation = useNavigation()
+  return (
+    
+    <Head>
+      <TouchI onPress={() => navigation.goBack()}>
+        <Icon1 name="arrow-left" size={24} color="#fff" />
+      </TouchI>  
+
+        <View style={styles.ContainerTotal}>
+          <Text style={styles.property}> Total de Items: </Text>
+          <Text style={styles.value}> 10 </Text>
+        </View>
+
+
+    </Head>
+   );
+}
+
 const styles= StyleSheet.create({
 
 
@@ -75,7 +93,24 @@ const styles= StyleSheet.create({
   txTotalCar:{
     color: '#fff',
     fontWeight: 'bold'
+  },
+
+  ContainerTotal:{
+    flexDirection: 'row',
+    alignItems:'center'
+  },
+
+  property:{
+    fontSize:16,
+    color: '#fff',
+    fontWeight: '400'
+  },
+
+  value:{
+    color: '#BF4a45',
+    fontSize: 22,
+    fontWeight: 'bold'
   }
 })
 
-export  {Header1, Header2};
+export  {Header1, Header2, Header3};

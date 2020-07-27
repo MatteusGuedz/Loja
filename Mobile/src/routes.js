@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import Welcome from './screens/Welcome'
 import Explore from './screens/Explore'
 import Details from './screens/Details'
+import Cart from './screens/Cart'
 import Menu    from './screens/Menu'
 
 const AppStack = createStackNavigator()
@@ -18,6 +19,7 @@ const Drawer = () => {
     <AppDrawer.Navigator drawerContent={() => <Menu />}>
         <AppDrawer.Screen name="Explore" component={Explore} />
         <AppDrawer.Screen name="Details" component={Details} />
+        <AppDrawer.Screen name="Cart" component={Cart} />
     </AppDrawer.Navigator>
   )
 }
@@ -31,6 +33,7 @@ const Routes = () => {
 
          <AppStack.Screen name="Welcome" component={Welcome} />
          <AppStack.Screen name="Explore" component={Drawer} />
+         <AppStack.Screen name="Cart" component={Drawer} />
          <AppStack.Screen name="Details" component={Drawer} />
 
         </AppStack.Navigator>
