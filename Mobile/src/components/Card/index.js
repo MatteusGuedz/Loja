@@ -3,8 +3,8 @@ import {Image, TouchableWithoutFeedback as Touch} from 'react-native';
 import { Container, Title, Mark, Price, InfoContainer, Cif, VIcon } from './styles';
 import Icon from '@expo/vector-icons/Feather'
 import { useNavigation  } from '@react-navigation/native'
+
 console.disableYellowBox = true;
-const EX = require('../../assets/teste.jpg')
 
 
 const Card = ({ Space, Name, Marca, Pricy, Image_Url }) => {

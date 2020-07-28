@@ -5,6 +5,7 @@ import Label from '../components/LabelInfo'
 import ButtonSimple from '../components/buttonSimple'
 import Carroussel from '../components/Carrousel'
 import MoreScroll from '../components/ScrollMoreProducts'
+import Whats from '../components/buttonWhats'
 import { 
   View,
   StatusBar,
@@ -62,6 +63,7 @@ const Detail = () => {
 
 
     </ScrollView>
+    <Whats />
   </View>
   )
 }

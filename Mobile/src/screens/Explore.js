@@ -3,8 +3,9 @@ import { StyleSheet, View, StatusBar, Text,ScrollView} from 'react-native';
 import { Header1 }from '../components/Header'
 import BotContent from '../components/BotContent'
 import Scroll from '../components/ScrollItem'
-import ScrollTeste from '../components/ScrollMoreProducts'
+
 import Card from '../components/Card'
+import Whats from '../components/buttonWhats'
 import {products} from '../utils/ApiF'
 
 
@@ -39,6 +40,8 @@ const Explore = () => {
     
     </ScrollView>
    
+
+    <Whats />
     </View>
     )
 }
