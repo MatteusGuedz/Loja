@@ -22,7 +22,7 @@ const ScrollMoreProducts = () => {
          Name={product.name}
         Marca={product.mark}
         Pricy={product.price}
-        Image_Url={product.imageMain_url}
+        image_url={product.imageMain_url}
       />
 
     ))}

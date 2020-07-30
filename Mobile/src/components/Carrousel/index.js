@@ -13,7 +13,7 @@ const Carrousel = ({ IMAGENS }) => {
     { IMAGENS.map((imagem, index1) => 
         (
         <Page style={styles.page} key={index1}>
-            <Image source={imagem} resizeMode="contain"/>
+            <Image source={{uri:imagem.img_url}} style={{height: '100%', width: '100%'}} resizeMode="contain"/>
            
             <Bar style={styles.barProcess}>
 

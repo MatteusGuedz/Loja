@@ -11,11 +11,14 @@ const Header1 = () => {
   return (
     
     <Head>
-      <TouchI onPress={() => navigation.goBack()}>
+      <TouchI onPress={() => navigation.goBack()}  activeOpacity={0.4}>
         <Icon1 name="arrow-left" size={24} color="#fff" />
       </TouchI>  
 
-       <TouchI style={styles.CarBtn} onPress={() => navigation.navigate('Cart')}>
+       <TouchI 
+          activeOpacity={0.8}
+          style={styles.CarBtn} 
+          onPress={() => navigation.navigate('Cart')}>
          
         <Icon1 name="shopping-cart" color="#fff" size={24}/>
         <View style={styles.LabelCar}>

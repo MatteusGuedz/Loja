@@ -16,319 +16,235 @@ export {IMAGENS};
 export const products = [
   {
     id: 1,
-    image:" bccfb061-deadpool.jpg",
     name: "Kratos",
-    price: 100,
-    category: 2,
+    price: 98,
+    category: 3,
     disponibility: true,
     originalPack: false,
     description: "O Deus da Guerra",
     mark: "Kings",
     product_id: "1234567",
-    peso: 33,
+    peso: 4,
     dimensions: "12cm X 13 cm",
-    material: "Belezura",
+    material: "Vinil",
     quantidade: 1,
     imagesDetails: [
       {
-        imagem: "iii",
+        imagem: "1",
         id_product: "1234567",
-        img_url: "encurtador.com.br/V0459"
+        img_url: "https://http2.mlstatic.com/action-figure-kratos-god-of-war-4-18cm-pronta-entrega-D_NQ_NP_766156-MLB27201460409_042018-F.jpg"
       },
       {
-        imagem: "iii",
+        imagem: "2",
         id_product: "1234567",
-        img_url: "encurtador.com.br/ixJKO"
+        img_url: "https://blogdebrinquedo.com.br/wp-content/uploads/2019/05/20190503action-figure-kratos-god-of-war-escala-1-6-mondo-02.jpg"
       },
       {
-        imagem: "iii",
+        imagem: "3",
         id_product: "1234567",
-        img_url: "encurtador.com.br/qQXY5"
+        img_url: "https://http2.mlstatic.com/action-figure-kratos-god-of-war-4-18cm-pronta-entrega-D_NQ_NP_766156-MLB27201460409_042018-F.jpg"
       },
       {
-        imagem: "iii",
+        imagem: "4",
         id_product: "1234567",
-        img_url: "encurtador.com.br/nzW23"
+        img_url: "https://blogdebrinquedo.com.br/wp-content/uploads/2019/05/20190503action-figure-kratos-god-of-war-escala-1-6-mondo-02.jpg"
       }
     ],
-    imageMain_url: IMG
+    imageMain_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgXBuYRF6k1Y63EnFMAdVY8D-fsaVy1KLykg&usqp=CAU"
   },
 
   {
-    id: 2,
-    image:" bccfb061-deadpool.jpg",
-    name: "Naruto",
-    price: 90,
-    category: 2,
+    id: 1,
+    name: "Hinata",
+    price: 120,
+    category: 3,
     disponibility: true,
     originalPack: false,
-    description: "O DGuerreiro Ninja",
-    mark: "Banpresto",
+    description: "Linda Ninja",
+    mark: "HotToys",
     product_id: "12345678",
-    peso: 13,
-    dimensions: "10cm X 15cm",
-    material: "Belezura",
+    peso: 2,
+    dimensions: "14cm X 15 cm",
+    material: "Acrilico",
     quantidade: 1,
     imagesDetails: [
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/dmpDU"
+        imagem: "1",
+        id_product: "12345678",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEVh7elLWVCDWjR2gJH6Cc5TPnWyNQjZL-Gw&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/hjlx8"
+        imagem: "2",
+        id_product: "12345678",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlJGeEG8GSRmcu-l0MawFqLGoHkrfKn6Y9Bg&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ILPWY"
+        imagem: "3",
+        id_product: "12345678",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEVh7elLWVCDWjR2gJH6Cc5TPnWyNQjZL-Gw&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/afzVW"
+        imagem: "4",
+        id_product: "12345678",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlJGeEG8GSRmcu-l0MawFqLGoHkrfKn6Y9Bg&usqp=CAU"
       }
     ],
-    imageMain_url: IMG
+    imageMain_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLRPP0wd1msOHkzdu3PiA0ffAGFajaNrummQ&usqp=CAU"
   },
+
   {
     id: 3,
-    image:" bccfb061-deadpool.jpg",
-    name: "Kratos",
-    price: 100,
-    category: 2,
+    name: "Kakashi",
+    price: 92,
+    category: 1,
     disponibility: true,
     originalPack: false,
-    description: "O Deus da Guerra",
+    description: "Kakashi Hatake",
     mark: "Kings",
-    product_id: "1234567",
-    peso: 33,
-    dimensions: "12cm X 13 cm",
-    material: "Belezura",
+    product_id: "123456789",
+    peso: 4,
+    dimensions: "9cm X 5cm",
+    material: "Vinil",
     quantidade: 1,
     imagesDetails: [
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/V0459"
+        imagem: "1",
+        id_product: "123456789",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRLNeAG2m3d0Udp0QRAr2pxAQL4CrSFF0_t5A&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ixJKO"
+        imagem: "2",
+        id_product: "123456789",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR0bXV6Jbwynj8GcVUjPF_lQ6yVONPpEFieLw&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/qQXY5"
+        imagem: "3",
+        id_product: "123456789",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRLNeAG2m3d0Udp0QRAr2pxAQL4CrSFF0_t5A&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/nzW23"
+        imagem: "4",
+        id_product: "123456789",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR0bXV6Jbwynj8GcVUjPF_lQ6yVONPpEFieLw&usqp=CAU"
       }
     ],
-    imageMain_url: IMG
+    imageMain_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBVPsSy_B4PXs-Z7G59knm8Yz7Kzjwn8-ILQ&usqp=CAU"
   },
 
   {
     id: 4,
-    image:" bccfb061-deadpool.jpg",
     name: "Naruto",
-    price: 90,
-    category: 2,
+    price: 138,
+    category: 1,
     disponibility: true,
     originalPack: false,
-    description: "O DGuerreiro Ninja",
-    mark: "Banpresto",
-    product_id: "12345678",
-    peso: 13,
-    dimensions: "10cm X 15cm",
-    material: "Belezura",
+    description: "Eu sou Naruto Uzumaki",
+    mark: "HotToys",
+    product_id: "12345678910",
+    peso: 2,
+    dimensions: "14cm X 15 cm",
+    material: "Acrilico",
     quantidade: 1,
     imagesDetails: [
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/dmpDU"
+        imagem: "1",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR6DzURjN2xrxNRvc-YSVgMYuXwpsAGUhZjeg&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/hjlx8"
+        imagem: "2",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvaHVFNYUvq89nWhJiFQGGV1jK7aN68CGFDA&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ILPWY"
+        imagem: "3",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR6DzURjN2xrxNRvc-YSVgMYuXwpsAGUhZjeg&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/afzVW"
+        imagem: "4",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvaHVFNYUvq89nWhJiFQGGV1jK7aN68CGFDA&usqp=CAU"
       }
     ],
-    imageMain_url: IMG
+    imageMain_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShraFo_Tf29pZqUU8suIK8EcX83mxh852uOQ&usqp=CAU"
   },
+  
   {
     id: 5,
-    image:" bccfb061-deadpool.jpg",
-    name: "Kratos",
-    price: 100,
-    category: 2,
+    name: "Goku",
+    price: 43,
+    category: 1,
     disponibility: true,
     originalPack: false,
-    description: "O Deus da Guerra",
+    description: "Som Goku",
     mark: "Kings",
-    product_id: "1234567",
-    peso: 33,
-    dimensions: "12cm X 13 cm",
-    material: "Belezura",
+    product_id: "12345678911",
+    peso: 4,
+    dimensions: "9cm X 5cm",
+    material: "Vinil",
     quantidade: 1,
     imagesDetails: [
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/V0459"
+        imagem: "1",
+        id_product: "12345678911",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTDjOUmavaQoZMVCIwttuxsLb5gVA0DrFkkpg&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ixJKO"
+        imagem: "2",
+        id_product: "12345678911",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWxv8gmYVqhUtrJEuizx_c54vnrKGrEheWiw&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/qQXY5"
+        imagem: "3",
+        id_product: "12345678911",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTDjOUmavaQoZMVCIwttuxsLb5gVA0DrFkkpg&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/nzW23"
+        imagem: "4",
+        id_product: "12345678911",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWxv8gmYVqhUtrJEuizx_c54vnrKGrEheWiw&usqp=CAU"
       }
     ],
-    imageMain_url: IMG
+    imageMain_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQNK7daycbrPBc1_BY-G86MxlgpXrAI-YiPow&usqp=CAU"
   },
 
   {
     id: 6,
-    image:" bccfb061-deadpool.jpg",
-    name: "Naruto",
-    price: 90,
-    category: 2,
+    name: "Qposket",
+    price: 158,
+    category: 4,
     disponibility: true,
     originalPack: false,
-    description: "O DGuerreiro Ninja",
-    mark: "Banpresto",
-    product_id: "12345678",
-    peso: 13,
-    dimensions: "10cm X 15cm",
-    material: "Belezura",
+    description: "Direto de Horgwats",
+    mark: "HotToys",
+    product_id: "12345678910",
+    peso: 2,
+    dimensions: "14cm X 15 cm",
+    material: "Acrilico",
     quantidade: 1,
     imagesDetails: [
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/dmpDU"
+        imagem: "1",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgazhGRruPI_2HsMd7jvqXfbPVZHf02E8CzA&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/hjlx8"
+        imagem: "2",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRDylitFzsdY_lR4jZ70Le7mP5hzcaJDZ2G4g&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ILPWY"
+        imagem: "3",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgazhGRruPI_2HsMd7jvqXfbPVZHf02E8CzA&usqp=CAU"
       },
       {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/afzVW"
+        imagem: "4",
+        id_product: "12345678910",
+        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRDylitFzsdY_lR4jZ70Le7mP5hzcaJDZ2G4g&usqp=CAU"
       }
     ],
-    imageMain_url: IMG
-  },
-
-  {
-    id: 7,
-    image:" bccfb061-deadpool.jpg",
-    name: "Kratos",
-    price: 100,
-    category: 2,
-    disponibility: true,
-    originalPack: false,
-    description: "O Deus da Guerra",
-    mark: "Kings",
-    product_id: "1234567",
-    peso: 33,
-    dimensions: "12cm X 13 cm",
-    material: "Belezura",
-    quantidade: 1,
-    imagesDetails: [
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/V0459"
-      },
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ixJKO"
-      },
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/qQXY5"
-      },
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/nzW23"
-      }
-    ],
-    imageMain_url: IMG
-  },
-
-  {
-    id: 8,
-    image:" bccfb061-deadpool.jpg",
-    name: "Naruto",
-    price: 90,
-    category: 2,
-    disponibility: true,
-    originalPack: false,
-    description: "O DGuerreiro Ninja",
-    mark: "Banpresto",
-    product_id: "12345678",
-    peso: 13,
-    dimensions: "10cm X 15cm",
-    material: "Belezura",
-    quantidade: 1,
-    imagesDetails: [
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/dmpDU"
-      },
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/hjlx8"
-      },
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/ILPWY"
-      },
-      {
-        imagem: "iii",
-        id_product: "1234567",
-        img_url: "encurtador.com.br/afzVW"
-      }
-    ],
-    imageMain_url: IMG
+    imageMain_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSs66RavhdO-uOf900L_ytpP8S2S2OBq62apA&usqp=CAU"
   },
 ]

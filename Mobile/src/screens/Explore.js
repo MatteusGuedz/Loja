@@ -13,7 +13,6 @@ import {products} from '../utils/ApiF'
 const Explore = () => {
   return (
     <View style={styles.container}>
-
     <StatusBar barStyle="light-content" />   
     <Header1 />
     <ScrollView>
@@ -26,10 +25,20 @@ const Explore = () => {
 
     {products.map( product => (
       <Card 
+         id={product.id}
          Name={product.name}
         Marca={product.mark}
         Pricy={product.price}
-        Image_Url={product.imageMain_url}
+        image_url={product.imageMain_url}
+
+
+        imagesDetails={product.imagesDetails}
+        description={product.description}
+        disponibility={product.disponibility}
+        originalPack={product.originalPack}
+        dimensions={product.dimensions}
+        peso={product.peso}
+        material={product.material}
       />
 
     ))}
@@ -40,7 +49,6 @@ const Explore = () => {
     
     </ScrollView>
    
-
     <Whats />
     </View>
     )

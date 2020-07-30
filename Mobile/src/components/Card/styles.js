@@ -17,17 +17,20 @@ export const Container = styled.View`
   
 
 `;
-export const VIcon = styled.TouchableOpacity`
+export const IconHeart = styled.TouchableOpacity`
   position: absolute;
   right: 3px;
-  top:7px;
+  top:3px;
   padding:3px;
   border-radius: 10px;
   background-color: transparent;
 
-  
-  
+`;
 
+export const IconCart = styled.TouchableOpacity`
+  padding:3px;
+  border-radius: 10px;
+  background-color: transparent;
 `;
 
 export const Image = styled.Image`
@@ -42,9 +45,9 @@ export const InfoContainer = styled.View`
   border-top-color: #010101;
   background-color: #eee;
   width:100%;
-  padding-bottom:15px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  padding-bottom:5px;
   
 `;
 
@@ -58,11 +61,22 @@ export const Mark = styled.Text`
  text-align: center;
  font-weight: 400;
  color: #999; 
+ margin-bottom:10px;
   
 `;
 
+export const ViewPrice = styled.View`
+  flex-direction: row;
+  padding: 0 8px;
+  align-items:center;
+  justify-content: space-between;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
+`;
+
 export const Price = styled.Text`
-  margin-top: 5px;
+
   font-size: 18px;
   text-align: center;
   font-weight: bold;

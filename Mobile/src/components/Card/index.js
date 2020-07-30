@@ -1,38 +1,102 @@
 import React from 'react';
-import {Image, TouchableWithoutFeedback as Touch} from 'react-native';
-import { Container, Title, Mark, Price, InfoContainer, Cif, VIcon } from './styles';
-import Icon from '@expo/vector-icons/Feather'
+import {Image, TouchableHighlight as Touch, View, StyleSheet} from 'react-native';
+import { Container, Title, Mark, Price, InfoContainer, Cif, IconHeart,IconCart, ViewPrice } from './styles';
+import Icon from '@expo/vector-icons/FontAwesome5'
 import { useNavigation  } from '@react-navigation/native'
+
+
+
+////
+
+
+
 
 console.disableYellowBox = true;
 
 
-const Card = ({ Space, Name, Marca, Pricy, Image_Url }) => {
+
+const Card = (
+  { Space,
+     Name, 
+     Marca, 
+     Pricy, 
+     image_url, 
+
+     id,
+     imagesDetails,
+     description,
+     disponibility,
+     originalPack,
+     dimensions,
+     peso,
+     material
+
+    }) => {
+
+
+
 
   const navigation = useNavigation()
 
-  return(
-  <Touch onPress={() => navigation.navigate('Details')}>
-    <Container Space={Space}  > 
-    
+  
+  return( 
+<View>
+  
 
-      <Image style={{flex:1,}}  source={Image_Url}  resizeMode="contain"/>
-      <VIcon> 
-      <Icon 
-        name="more-vertical" 
-        color="#2E2F33" 
-        size={24}/>
-     </VIcon>
+    <Touch onPress={() => navigation.navigate('Details',{
+      id,
+      imagesDetails,
+      description,
+      disponibility,
+      originalPack,
+      dimensions,
+      peso,
+      Name, 
+      Marca, 
+      Pricy, 
+      material
+    })} activeOpacity={0.9}>
+        <Container Space={Space}  > 
+
+          <Image style={{flex:1, height: "100%", width: '100%'}}  
+          source={{uri: image_url}}  resizeMode="contain"/>
+          <IconHeart> 
+          <Icon 
+            name="heart" 
+            color="#BF4a45" 
+            size={20}/>
+        </IconHeart>
 
 
-     <InfoContainer> 
-      <Title> {Name} </Title>
-      <Mark> {Marca} </Mark>
-      <Price> <Cif>R$</Cif> {Pricy},00 </Price>
-      </InfoContainer> 
-    </Container>
+        <InfoContainer> 
+          <Title> {Name} </Title>
+          <Mark> {Marca} </Mark>
+
+          <ViewPrice>
+            <Price> <Cif>R$</Cif> {Pricy},00 </Price>
+            <IconCart>
+              <Icon 
+              name="shopping-cart" 
+              color="#010101" 
+              size={20}/>
+            </IconCart>             
+          </ViewPrice>
+          
+          </InfoContainer> 
+        </Container>
     </Touch> 
+
+ 
+</View>
+  
   );
 }
 
+
+const styles = StyleSheet.create({
+ 
+})
 export default Card;
+
+
+

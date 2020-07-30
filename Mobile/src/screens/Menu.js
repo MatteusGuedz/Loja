@@ -7,6 +7,7 @@ import AVATAR from '../assets/avatar.jpg'
 
 
 
+
 export default props => {
 
   
@@ -19,10 +20,14 @@ export default props => {
 
         <View style={styles.ListOptions}>
           
-            <Option LabelText="Produtos" Name="store"/>
-            <Option LabelText="Carrinho" Name="shopping-cart"/>
-            <Option LabelText="Lista de desejos" Name="heart"/>
-            <Option LabelText="Ofertas" Name="ticket-alt"/>  
+            <Option 
+                LabelText="Produtos" 
+                Name="store" 
+                Nav="Welcome"/>
+
+            <Option LabelText="Carrinho" Name="shopping-cart" Nav="Explore"/>
+            <Option LabelText="Lista de desejos" Name="heart" Nav="Explore"/>
+            <Option LabelText="Ofertas" Name="ticket-alt" Nav="Explore"/>  
         </View >  
 
 

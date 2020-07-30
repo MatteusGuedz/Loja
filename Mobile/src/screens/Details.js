@@ -1,11 +1,11 @@
 import React from 'react';
-import { IMAGENS} from '../utils/ApiF'
 import {Header2} from '../components/Header'
 import Label from '../components/LabelInfo'
 import ButtonSimple from '../components/buttonSimple'
 import Carroussel from '../components/Carrousel'
 import MoreScroll from '../components/ScrollMoreProducts'
 import Whats from '../components/buttonWhats'
+import { useRoute} from '@react-navigation/native';
 import { 
   View,
   StatusBar,
@@ -18,16 +18,22 @@ import {
 const WIDTH = Dimensions.get('window').width
 
 const Detail = () => {
+
+  const route = useRoute();
+  const routeParams = route.params;
+
   return (
 
   <View style={styles.container}>
     <StatusBar barStyle="light-content" /> 
     <Header2  />
 
+
+
   <ScrollView>
-      <Carroussel IMAGENS={IMAGENS} />
+      <Carroussel IMAGENS={routeParams.imagesDetails} />
          <View style={styles.ContDesc}>
-                <Text style={styles.Description}> O deus da Guerra, pode estar a um passo da sua estante! </Text>
+                <Text style={styles.Description}> {routeParams.description} </Text>
          </View>
 
          <View style={styles.DetailsContainer}>
@@ -37,19 +43,47 @@ const Detail = () => {
 
 
         <View style={styles.BoxDetail}>
-          <Label property="Nome" value="Action Figure"/>
-          <Label property="Marca" value="HotToys"/>
-          <Label property="Embalagem Original" value="Não"/>
-          <Label property="Disponivel" value="Sim"/>
-          <Label property="Peso" value="33kg"/>
-          <Label property="Dimensões" value="30cm X 10cm"/>
-          <Label property="Material" value="Vínil"/>
+          <Label 
+            property="Nome" 
+            value={routeParams.Name}/>
+
+          
+          <Label 
+            property="Marca" 
+            value={routeParams.Marca}/>
+
+          
+          <Label 
+            property="Embalagem Original" 
+            value={routeParams.originalPack === true ? "Sim": "Não"}/>
+
+          
+          <Label 
+            property="Disponivel" 
+            value={routeParams.disponibility === true ? "Sim": "Não"}/>
+
+          
+          <Label 
+            property="Peso" 
+            value={`${routeParams.peso}Kg`}/>
+
+          
+          <Label 
+            property="Dimensões" 
+            value={routeParams.dimensions}/>
+
+          
+          <Label 
+            property="Material" 
+            value={routeParams.material}/>
+
+          
         </View>
             
 
 
            <View style={styles.ButtonsContainer}> 
-              <ButtonSimple priceFlag price={100}/>
+              <ButtonSimple priceFlag price={routeParams.Pricy}/>
               <ButtonSimple ButtonFlag/>
             </View>
 
