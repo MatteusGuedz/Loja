@@ -11,35 +11,39 @@ const ScrollItem = () => {
     'Boy',
 
   ]
-  const {selected, setSelected} = useState();
+  const [selected, setSelected] = useState(true);
+
+
+  const OnChangeSelected = (item) => {
+    console.log(` indice: ${item}`)
+    console.log(` selecionado: ${selected}`)
+
+   
+   
+  }
   
   return (
     <Container>
     
-
     <Scroll 
     horizontal
     showsHorizontalScrollIndicator={false}
     contentContainerStyle={{ 
       paddingHorizontal: 20,
-      alignItems:'center'
+      alignItems:'center',
+      elevation: 5
     }}>
 
-      <BtnItem  selected={true}>
-        <Text> Teste </Text>
-      </BtnItem>
+
 
       {
       Items.map((item, i) =>(
-        <BtnItem  selected={false}  key={i}>
+        <BtnItem  select={selected}  key={i} onPress={() => OnChangeSelected(item)}>
         <Text> {item} </Text>
         </BtnItem>
       ))
       }
 
-     
-
-      
 
 
 

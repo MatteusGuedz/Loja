@@ -1,9 +1,19 @@
-import React  from 'react';
+import React, {useState, useEffect}  from 'react';
 import { TouchableOpacity  as  TouchI, StyleSheet,View, Text} from 'react-native';
 import { Head,MainHead, Price, Cif } from './styles'
 import { RectButton } from 'react-native-gesture-handler'
-  const BOttom = () => {
+import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 
+
+  const BOttom = props => {
+    const [visible, setVisible] = useState(false)
+
+
+    useEffect(() => {
+      setTimeout(()=>{
+        setVisible(()=> !visible)
+      },  3000)
+    },[])
 
   return (
     
@@ -18,7 +28,15 @@ import { RectButton } from 'react-native-gesture-handler'
           <Text style={styles.property}> Valor Total: </Text>         
         </View>
 
-        <Price><Cif>R$</Cif> 980,00 </Price>
+
+
+        <ShimmerPlaceHolder
+            style={styles.LoaderValueTotal} 
+            autoRun={true} 
+            visible={visible}>
+        <Price><Cif>R$</Cif> {props.ValorTotal || 0},00 </Price>
+
+        </ShimmerPlaceHolder> 
     </Head>
     </>
    );
@@ -58,6 +76,13 @@ const styles= StyleSheet.create({
     color: '#fff',
     fontSize:18,
     fontWeight: 'bold'
+  },
+
+  LoaderValueTotal:{
+    height:30,
+    width:120,
+    marginBottom:5,
+    borderRadius:8,
   }
 
 

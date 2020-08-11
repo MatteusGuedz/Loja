@@ -10,14 +10,17 @@ export const Head = styled.View`
   align-items: center;
   justify-content: space-between;
   padding-left:18px;
-  padding-right:18px;
+  padding-right:10px;
   border-bottom-color: #2E2F33;
   border-bottom-width: 1px;
 
 `;
 
-export const Text = styled.Text`
-
+export const TextMenu = styled.Text`
+  color: #fff;
+  font-size:18px;
+  font-weight: bold;
+  text-align:center;
 `
 
 

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, Image, StyleSheet} from 'react-native';
 import { RectButton} from 'react-native-gesture-handler'
 import Icon from '@expo/vector-icons/Feather'
+import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 import { 
   Card,
   Infos,
+  ImagemProduct,
   BoxInfos,
   Title,
   Marca,
@@ -17,9 +19,27 @@ import {
 const EX = require('../../assets/teste.jpg')
 
 const CardBag = ({ Name, Mark, Pricy, Image_Url }) => {
+     const [visible, setVisible] = useState(false)
+
+
+  useEffect(() => {
+    setTimeout(()=>{
+
+      setVisible(()=> !visible)
+    },  3000)
+  },[])
+
+
   return (
+
+    <ShimmerPlaceHolder
+       style={styles.LoaderBig} 
+       autoRun={true} 
+       visible={visible}>
+
     <Card>
-          <Image  style={styles.image} source={Image_Url} />
+          < ImagemProduct style={styles.image}  
+          source={{uri: Image_Url}} />
      
 
        <Infos>
@@ -56,21 +76,15 @@ const CardBag = ({ Name, Mark, Pricy, Image_Url }) => {
 
        </Infos>
     </Card>
+    
+    </ShimmerPlaceHolder>
   
     );
 }
 
 
 const styles = StyleSheet.create({
-  image:{
-    
-    resizeMode: 'contain',
-    width: 115,
-    height:120,
-    borderRadius:15,
-
-    
-  },
+  image:{ resizeMode: 'contain'},
 
   btnAction:{
     backgroundColor: '#BF4a45',
@@ -81,6 +95,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
  
 
+  },
+
+  LoaderBig:{
+    width: '90%',
+    height:120,
+    marginBottom:10,
+    borderRadius:15,
   },
 
   ContQuant:{

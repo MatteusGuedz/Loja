@@ -29,9 +29,7 @@ const Explore = () => {
          Name={product.name}
         Marca={product.mark}
         Pricy={product.price}
-        image_url={product.imageMain_url}
-
-
+        image_url={product.imageMain_url}   
         imagesDetails={product.imagesDetails}
         description={product.description}
         disponibility={product.disponibility}

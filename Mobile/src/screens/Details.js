@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react'
 import {Header2} from '../components/Header'
 import Label from '../components/LabelInfo'
 import ButtonSimple from '../components/buttonSimple'
 import Carroussel from '../components/Carrousel'
 import MoreScroll from '../components/ScrollMoreProducts'
 import Whats from '../components/buttonWhats'
-import { useRoute} from '@react-navigation/native';
+import { useRoute} from '@react-navigation/native'
+import {products} from '../utils/ApiF'
+import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 import { 
   View,
   StatusBar,
   StyleSheet,
   Text,
   ScrollView,
-  Dimensions } from 'react-native';
-
-
+  Dimensions } from 'react-native'
 const WIDTH = Dimensions.get('window').width
 
 const Detail = () => {
@@ -22,18 +22,43 @@ const Detail = () => {
   const route = useRoute();
   const routeParams = route.params;
 
+  const [visible, setVisible] = useState(false)
+ 
+ 
+  useEffect(() => {
+
+    setTimeout(()=>{
+
+      setVisible(()=> !visible)
+    },  3000)
+  },[])
+
   return (
 
   <View style={styles.container}>
     <StatusBar barStyle="light-content" /> 
-    <Header2  />
+    <Header2  IsFavorite={routeParams.Fav}/>
 
 
 
   <ScrollView>
-      <Carroussel IMAGENS={routeParams.imagesDetails} />
+
+      <ShimmerPlaceHolder  
+          style={styles.LoaderImage}  
+            autoRun={true} 
+              visible={visible}>
+
+          <Carroussel IMAGENS={routeParams.imagesDetails} />
+      </ShimmerPlaceHolder>  
+
          <View style={styles.ContDesc}>
+             <ShimmerPlaceHolder  
+                style={styles.LoaderDescription}  
+                  autoRun={true} 
+                    visible={visible}>
+
                 <Text style={styles.Description}> {routeParams.description} </Text>
+              </ShimmerPlaceHolder>   
          </View>
 
          <View style={styles.DetailsContainer}>
@@ -43,56 +68,113 @@ const Detail = () => {
 
 
         <View style={styles.BoxDetail}>
-          <Label 
-            property="Nome" 
-            value={routeParams.Name}/>
+
+              <ShimmerPlaceHolder  
+                  style={styles.LoaderLabel}  
+                    autoRun={true} 
+                      visible={visible}> 
+                <Label 
+                  property="Nome" 
+                    value={routeParams.Name}/>
+            </ShimmerPlaceHolder>
+
+
+
+          <ShimmerPlaceHolder  
+                style={styles.LoaderLabel}  
+                  autoRun={true} 
+                    visible={visible}>        
+              <Label 
+                property="Marca" 
+                value={routeParams.Marca}/>
+          </ShimmerPlaceHolder>
+
+
+          <ShimmerPlaceHolder  
+                style={styles.LoaderLabel}  
+                  autoRun={true} 
+                    visible={visible}>  
+              <Label 
+                property="Embalagem Original" 
+                value={routeParams.originalPack === true ? "Sim": "Não"}/> 
+            </ShimmerPlaceHolder>
+
+
+
+           <ShimmerPlaceHolder  
+                style={styles.LoaderLabel}  
+                  autoRun={true} 
+                    visible={visible}>
+              <Label 
+                property="Disponivel" 
+                value={routeParams.disponibility === true ? "Sim": "Não"}/>
+           </ShimmerPlaceHolder> 
 
           
-          <Label 
-            property="Marca" 
-            value={routeParams.Marca}/>
+
+           <ShimmerPlaceHolder  
+                style={styles.LoaderLabel}  
+                  autoRun={true} 
+                    visible={visible}>
+              <Label 
+                property="Peso" 
+                value={`${routeParams.peso}Kg`}/>
+            </ShimmerPlaceHolder> 
 
           
-          <Label 
-            property="Embalagem Original" 
-            value={routeParams.originalPack === true ? "Sim": "Não"}/>
 
+            <ShimmerPlaceHolder  
+                style={styles.LoaderLabel}  
+                  autoRun={true} 
+                    visible={visible}>
+              <Label 
+                property="Dimensões" 
+                value={routeParams.dimensions}/>
+             </ShimmerPlaceHolder> 
+
+
+
+             <ShimmerPlaceHolder  
+                style={styles.LoaderLabel}  
+                  autoRun={true} 
+                    visible={visible}> 
+                <Label 
+                  property="Material" 
+                  value={routeParams.material}/>
+            </ShimmerPlaceHolder>
           
-          <Label 
-            property="Disponivel" 
-            value={routeParams.disponibility === true ? "Sim": "Não"}/>
-
           
-          <Label 
-            property="Peso" 
-            value={`${routeParams.peso}Kg`}/>
-
-          
-          <Label 
-            property="Dimensões" 
-            value={routeParams.dimensions}/>
-
-          
-          <Label 
-            property="Material" 
-            value={routeParams.material}/>
-
           
         </View>
             
 
 
            <View style={styles.ButtonsContainer}> 
-              <ButtonSimple priceFlag price={routeParams.Pricy}/>
-              <ButtonSimple ButtonFlag/>
+           
+           <ShimmerPlaceHolder  
+                  style={styles.LoaderButtons}  
+                    autoRun={true} 
+                      visible={visible}>
+                 <ButtonSimple priceFlag price={routeParams.Pricy}/>
+           </ShimmerPlaceHolder>
+
+           <ShimmerPlaceHolder  
+                  style={styles.LoaderButtons}  
+                    autoRun={true} 
+                      visible={visible}>
+                  <ButtonSimple ButtonFlag/>
+           </ShimmerPlaceHolder>
+
+
+             
             </View>
 
     </View>
 
 
-
-     <MoreScroll />
-     <MoreScroll />
+      
+      <MoreScroll Produtos={products} />
+     <MoreScroll Produtos={products} />
 
 
 
@@ -117,6 +199,30 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: WIDTH,
     
+  },
+
+  // loaders
+
+  LoaderImage:{
+    borderRadius:2,
+    height:380,
+    width: '100%'
+  },
+
+  LoaderDescription:{
+    borderRadius:2,
+    height:30,
+    width: '100%'
+  },
+  LoaderLabel:{
+    borderRadius:2,
+    height:20,
+    width: '100%'
+  },
+  LoaderButtons:{
+    borderRadius:2,
+    height:40,
+    width: 100
   },
 
   TitDetails:{
@@ -154,6 +260,7 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     height:'65%',
     width: '70%',
+    paddingHorizontal:"auto",
     marginLeft:15,
     marginTop:45,
     justifyContent: 'space-between'

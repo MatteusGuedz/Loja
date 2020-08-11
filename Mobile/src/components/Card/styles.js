@@ -7,8 +7,8 @@ const WTH = Math.round((width - 45) / 2)
 
 export const Container = styled.View`
   background-color: #fff;
-  border-radius: 3px;
-  margin-bottom:15px;
+  border-radius: 5px;
+  margin-bottom:10px;
   align-items: center;
   height:220px;
   width: ${WTH} ;

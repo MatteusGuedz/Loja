@@ -5,7 +5,7 @@ import { Text, StyleSheet} from 'react-native'
 
 const  Button = ({ Navegar }) => {
   return (
-    <RectButton  style={styles.But} onPress={Navegar}>
+    <RectButton  style={styles.But} onPress={Navegar} activeOpacity={0.3}>
       <Text style={styles.txt}> Go Store </Text>
     </RectButton>
     )

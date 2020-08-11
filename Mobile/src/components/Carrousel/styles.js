@@ -18,7 +18,9 @@ export const Bar = styled.View`
    padding:10px;
    flex-direction:row;
    align-items: center;   
-   bottom:10px;
+   top:10px;
+   right:10px;
+ 
 
 `
 
@@ -26,7 +28,7 @@ export const Bar = styled.View`
 export const Item = styled.View`
    height:10px;
    width:10px;
-   background-color: #fff;
+   background-color: #000;
    border-radius:15px;
    margin-left:2px;
    margin-right:2px; 

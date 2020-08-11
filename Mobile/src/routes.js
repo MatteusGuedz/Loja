@@ -10,19 +10,19 @@ import Cart from './screens/Cart'
 import Menu    from './screens/Menu'
 
 const AppStack = createStackNavigator()
-const AppDrawer = createDrawerNavigator()
+// const AppDrawer = createDrawerNavigator()
 
 
 
-const Drawer = () => {
-  return (
-    <AppDrawer.Navigator drawerContent={() => <Menu />}>
-        <AppDrawer.Screen name="Explore" component={Explore} />
-        <AppDrawer.Screen name="Details" component={Details} />
-        <AppDrawer.Screen name="Cart" component={Cart} />
-    </AppDrawer.Navigator>
-  )
-}
+// const Drawer = () => {
+//   return (
+//     <AppDrawer.Navigator  drawerContent={() => <Menu />}>
+//         <AppDrawer.Screen name="Explore" component={Explore} />
+//         <AppDrawer.Screen name="Details" component={Details} />
+//         <AppDrawer.Screen name="Cart" component={Cart} />
+//     </AppDrawer.Navigator>
+//   )
+// }
 
 
 const Routes = () => {
@@ -32,9 +32,9 @@ const Routes = () => {
          headerMode="none">
 
          <AppStack.Screen name="Welcome" component={Welcome} />
-         <AppStack.Screen name="Explore" component={Drawer} />
-         <AppStack.Screen name="Cart" component={Drawer} />
-         <AppStack.Screen name="Details" component={Drawer} />
+         <AppStack.Screen name="Explore" component={Explore} />
+         <AppStack.Screen name="Cart" component={Cart} />
+         <AppStack.Screen name="Details" component={Details} />
 
         </AppStack.Navigator>
     </NavigationContainer>

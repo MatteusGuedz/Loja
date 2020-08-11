@@ -12,7 +12,7 @@ export const Container = styled.View`
   flex-direction:row;
   margin-bottom:2px;
   overflow:hidden;
-
+  
 `;
 
 export const Scroll = styled.ScrollView`
@@ -22,7 +22,7 @@ export const Scroll = styled.ScrollView`
 
 export const BtnItem = styled.TouchableOpacity`
 
- background-color: ${props => props.selected ? COR_ALPHA : COR_BASIC} ;
+ background-color: ${props => props.select ? COR_ALPHA : COR_BASIC} ;
  height:30px;
  padding:10px;
  border-radius:18px;

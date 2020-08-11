@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet,Linking } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 
 const ButtonWhats = () => {
+
+  function handleWhatsApp(){
+    Linking.openURL(`whatsapp://send?phone="5595991505157"&text=Olá! Como posso estar adquirindo um Colecionável GeekTower?`)
+  }
+
   return (
-    <RectButton style={styles.button} activeOpacity={0.9}>
+    <RectButton onPress={handleWhatsApp} style={styles.button} activeOpacity={0.9}>
       <Icon name="whatsapp" size={35} color="#fff"/>
     </RectButton>
     );

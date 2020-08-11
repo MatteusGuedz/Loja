@@ -4,7 +4,8 @@ export const Card = styled.View`
   height: 120px;
   background-color: #fff;
   width: 90%;
-  border-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
   flex-direction: row;
   margin-bottom:5px;
 `
@@ -18,6 +19,14 @@ export const Infos = styled.View`
    border-top-right-radius:15px;
    border-bottom-right-radius:15px;
  
+`
+
+export const  ImagemProduct = styled.Image`
+
+    width: 115px;
+    height:120px;
+    
+
 `
 
 export const BoxInfos = styled.View`

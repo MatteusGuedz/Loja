@@ -1,15 +1,19 @@
 import React from 'react';
 import {Image, StyleSheet, Dimensions} from 'react-native'
 import ViewPager from '@react-native-community/viewpager'
+
 import { Bar, Page, Item } from './styles';
 
 
 const WIDTH = Dimensions.get('window').width
 
 const Carrousel = ({ IMAGENS }) => {
+ 
+
   return (
     <ViewPager style={styles.viewPager} initialPage={0}>
       
+     
     { IMAGENS.map((imagem, index1) => 
         (
         <Page style={styles.page} key={index1}>
@@ -29,6 +33,7 @@ const Carrousel = ({ IMAGENS }) => {
      }    
 
 
+
   </ViewPager>
   
     );
@@ -38,14 +43,16 @@ const Carrousel = ({ IMAGENS }) => {
 
 const styles = StyleSheet.create({
    viewPager: {
-    height: 400,
+    
+    height: 370,
     width: WIDTH,
    
   },
 
   marked:{
     backgroundColor: '#DE7672'
-  },
+  }
+ 
 })
 
 export default Carrousel;
