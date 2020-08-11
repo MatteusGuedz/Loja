@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet} from 'react-native';
 import { RectButton} from 'react-native-gesture-handler'
 import Icon from '@expo/vector-icons/Feather'
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
+
 import { 
   Card,
   Infos,
@@ -30,54 +31,67 @@ const CardBag = ({ Name, Mark, Pricy, Image_Url }) => {
   },[])
 
 
+
+
+
+
+
+
   return (
+
 
     <ShimmerPlaceHolder
        style={styles.LoaderBig} 
        autoRun={true} 
        visible={visible}>
 
-    <Card>
-          < ImagemProduct style={styles.image}  
-          source={{uri: Image_Url}} />
-     
-
-       <Infos>
-          <BoxInfos>
-            <Title> {Name} </Title>
-            <Marca> {Mark} </Marca>
-          </BoxInfos>  
-         
-
-    <ContainerBottom>
-            <Quant>
-                      <RectButton style={styles.btnAction}>
-                      <Icon name="minus" color="#fff" size={20} />
-                      </RectButton>
-
-                      <View style={styles.ContQuant}> 
-                        <Text style={styles.Quant}> 1 </Text>
-                      </View>
-
-                    
-                      <RectButton style={styles.btnAction}>
-                      <Icon name="plus" color="#fff" size={20} />
-                      </RectButton>
-            </Quant>
-
-
-            <Price><Cif>R$</Cif> {Pricy},00 </Price>
-
-  
-</ContainerBottom>
-        
-
-         
-
-       </Infos>
-    </Card>
+      
     
+ 
+
+          <Card>
+                < ImagemProduct style={styles.image}  
+                source={{uri: Image_Url}} />
+
+                
+          
+
+            <Infos>
+                <BoxInfos>
+                        <RectButton style={styles.btnInfor} onPress={() => {}}>
+                                <Icon name="trash" size={22} color="#999"/>
+                         </RectButton>
+                  <Title> {Name} </Title>
+                  <Marca> {Mark} </Marca>
+                </BoxInfos>  
+              
+
+                <ContainerBottom>
+                     
+
+                      <Quant>
+                        <RectButton style={styles.btnAction}>
+                        <Icon name="minus" color="#fff" size={20} />
+                        </RectButton>
+
+                        <View style={styles.ContQuant}> 
+                          <Text style={styles.Quant}> 1 </Text>
+                        </View>
+
+                      
+                        <RectButton style={styles.btnAction}>
+                        <Icon name="plus" color="#fff" size={20} />
+                        </RectButton>
+                      </Quant>
+                      <Price><Cif>R$</Cif> {Pricy},00 </Price>
+              </ContainerBottom>    
+
+            </Infos>
+          </Card>
+     
     </ShimmerPlaceHolder>
+   
+
   
     );
 }
@@ -118,6 +132,11 @@ const styles = StyleSheet.create({
     fontSize:22,
     fontWeight: 'bold',
     color: '#000'
+  },
+  btnInfor:{
+    position: 'absolute',
+    right:5,
+    top:5,
   }
 
 

@@ -7,6 +7,7 @@ import {products} from '../utils/ApiF'
 
 
 
+
 const Cart = () => {
 
 
@@ -21,7 +22,6 @@ const Cart = () => {
   }, 0)
 
   
- 
 
   return(
     <View style={styles.container}>
@@ -33,7 +33,7 @@ const Cart = () => {
  
             <View style={styles.ListCont}>
 
-       
+           
 
 
               {products.map(product => (
@@ -44,7 +44,7 @@ const Cart = () => {
                 Image_Url={product.imageMain_url} />
                 ))}
 
- 
+        
 
             </View>
                 

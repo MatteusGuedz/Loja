@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View, StatusBar, Text,ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View, StatusBar, Text,ScrollView, Animated} from 'react-native';
 import { Header1 }from '../components/Header'
 import BotContent from '../components/BotContent'
 import Scroll from '../components/ScrollItem'
@@ -11,17 +11,26 @@ import {products} from '../utils/ApiF'
 
 
 const Explore = () => {
+  const [ scrollY, setScrollY] = useState(new Animated.Value(0))
+  
   return (
     <View style={styles.container}>
-    <StatusBar barStyle="light-content" />   
-    <Header1 />
-    <ScrollView>
+       <StatusBar barStyle="light-content" />   
+          <Header1 ScrollY={scrollY} />
 
-    <Text style={styles.title}> Explore Figures!</Text>
 
+    <ScrollView 
+      scrollEventThrottle={16}
+      onScroll={Animated.event([{
+        nativeEvent:{
+          contentOffset:{y: scrollY}
+        },
+      }],
+    { useNativeDriver:false})}>
+
+    <Text style={styles.title}> Explore Figures! </Text>
     <Scroll />
-    <BotContent>
-
+        <BotContent>
 
     {products.map( product => (
       <Card 
@@ -38,13 +47,26 @@ const Explore = () => {
         peso={product.peso}
         material={product.material}
       />
+    ))} 
 
+{products.map( product => (
+      <Card 
+         id={product.id}
+         Name={product.name}
+        Marca={product.mark}
+        Pricy={product.price}
+        image_url={product.imageMain_url}   
+        imagesDetails={product.imagesDetails}
+        description={product.description}
+        disponibility={product.disponibility}
+        originalPack={product.originalPack}
+        dimensions={product.dimensions}
+        peso={product.peso}
+        material={product.material}
+      />
     ))}
-     
-  
- 
-    </BotContent>
-    
+        </BotContent>
+
     </ScrollView>
    
     <Whats />

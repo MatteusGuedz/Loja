@@ -1,18 +1,43 @@
 import React, {useState, useEffect}  from 'react';
-import { TouchableOpacity  as  TouchI, StyleSheet,View, Text, Alert,Share } from 'react-native';
 import { Head,TextMenu } from './styles'
 import  Icon1  from '@expo/vector-icons/FontAwesome5'
 import  Icon2  from '@expo/vector-icons/AntDesign'
 import { useNavigation  } from '@react-navigation/native';
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
+import {  
+    TouchableOpacity  as  TouchI, 
+    StyleSheet,
+    View, 
+    Text, 
+    Alert,
+    Animated,
+    Share } from 'react-native';
 
-const Header1 = () => {
+const Header1 = ({ScrollY}) => {
   const navigation = useNavigation()
+
+  
   
 
   return (
     
-    <Head>
+    <Animated.View 
+      style={
+        [styles.head1,
+        {
+          height: ScrollY.interpolate({
+           inputRange: [10, 160, 185],
+           outputRange:[80, 20, 0],
+           extrapolate:'clamp'
+        }),
+        opacity:ScrollY.interpolate({
+          inputRange: [1, 75, 170],
+          outputRange:[1, 1, 0],
+          extrapolate:'clamp'
+       }),
+      
+      }]
+      }>
       <TouchI onPress={() => navigation.goBack()}  activeOpacity={0.4}>
         <Icon1 name="arrow-left" size={24} color="#fff" />
       </TouchI>  
@@ -30,7 +55,7 @@ const Header1 = () => {
       </TouchI>  
 
 
-    </Head>
+    </Animated.View>
    );
 }
 
@@ -161,6 +186,21 @@ const Header3 = props => {
 }
 
 const styles= StyleSheet.create({
+
+
+  head1:{
+      height: 50,
+      width:'100%',
+      backgroundColor: '#010101',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingLeft:18,
+      paddingRight:18,
+      borderBottomColor:'#2E2F33',
+      borderBottomWidth:1,
+ 
+      },
 
 
   LabelCar:{

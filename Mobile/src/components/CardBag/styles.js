@@ -1,9 +1,14 @@
 import styled from 'styled-components/native'
+import {Dimensions} from 'react-native'
+
+
+const { width} = Dimensions.get('window') 
+const Width = Math.round(width -  (width / 10))
 
 export const Card = styled.View`
   height: 120px;
   background-color: #fff;
-  width: 90%;
+  width: ${Width};
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   flex-direction: row;
