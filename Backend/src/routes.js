@@ -4,12 +4,6 @@ const routes = express.Router();
 // require('./config/passport')
 
 
-//multer
-const multer = require('multer')
-const multerConfigImages = require('./config/multerImages')
-const multerConfigImage = require('./config/multerImage')
-const uploadImages = multer(multerConfigImages)
-const uploadImage = multer(multerConfigImage)
 
 //Controllers
 const ProductsController = require('./controllers/productsController')
@@ -19,8 +13,7 @@ const RequestController = require('./controllers/requestController')
 
 
 //products
-routes.post('/products', uploadImage.single('image'), ProductsController.
-createProduct )
+routes.post('/products', ProductsController.createProduct )
 routes.get('/products', ProductsController.listProduct)
 routes.get('/products/category/:category', ProductsController.listFilter)
 
@@ -28,9 +21,7 @@ routes.put('/product', ProductsController.updateProduct )
 routes.get('/product', ProductsController.listerUnic)
 routes.delete('/product/:id', ProductsController.removeProduct )
 
-routes.post('/images', uploadImages.single('image'), ProductsController.createImage )
-routes.get('/images', ProductsController.listImages )
-routes.get('/image', ProductsController.removeImage )
+
 
 
 // users

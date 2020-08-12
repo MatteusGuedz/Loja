@@ -1,32 +1,45 @@
 const connection = require('../database/connection') 
-// const generateID = require('../utils/generateID') 
+const generateID = require('../utils/generateID') 
 const rimraf = require('rimraf')
 const fs = require('fs')
 module.exports = {
 
   
     async createProduct(request, response){
-      // const  productID = generateID()
+      const  productID = generateID()
 
       const {
+        image,
         name,
         price,
         category,
         disponibility,
         originalPack,
-        product_id,
         description,
         mark,
         peso,
         dimensions,
         material,
         quantidade,
+        imagesDetails
          } = request.body;
+
+
+         const trx = await connection.transaction();
+         const ImagesDetails = imagesDetails.map(imageItem => {
+          return {
+            ref_id:productID,
+            imageURL: imageItem.image,
+
+          }
+        })
+
+         
          
 
     
         const product = {
-          image:request.file.filename,
+          image,
           name,
           price,
           category,
@@ -34,31 +47,40 @@ module.exports = {
           originalPack,
           description,
           mark,
-          product_id,
+          product_id: productID,
           peso,
           dimensions,
           material,
           quantidade,
           }
 
-          try {
 
-           const  produtosExists =  await connection('products')
-              .where({product_id: product_id})
-              .select('*')
+         
 
-              if(Number(produtosExists) == 0 ){
-                await connection('products').insert(product)
-                return response.json(product)
-              } else {
-                return response.send('O Produto ja existe.')
-              }
+         try {
             
+            
+            
+          const  produtosExists =  await trx('products')
+             .where({product_id: productID})
+             .select('*')
 
-          }catch (e){
+             if(Number(produtosExists) == 0 ){
+               await trx('products').insert(product)
+               await trx('images').insert(ImagesDetails)
+               await trx.commit();
+               return response.status(201).send('Cadastro Realizado!')
+             } else {
+               return response.send('O Produto ja existe.')
+             }
+           
 
-            return response.status(400).send(e)
-          }
+         }catch (e){
+           await trx.rollback();
+           return response.status(400).send(e)
+         }
+
+         
       
         
 
@@ -68,7 +90,7 @@ module.exports = {
 
     async updateProduct(request, response){
      
-      const {product_id} = request.query;
+      const { product_id } = request.query;
 
 
       const updateProduct = (request, response, product) => {
@@ -83,6 +105,7 @@ module.exports = {
      
 
       const { 
+        image,
         name,
         price,
         category,
@@ -109,6 +132,7 @@ module.exports = {
 
 
          const ProductUp = {
+          image,
           name,
           price,
           category,
@@ -167,6 +191,7 @@ module.exports = {
 
     async listProduct(request, response){
     const products =  await connection('products')
+        .where({disponibility:true})
         .select('*')
 
         
@@ -248,86 +273,7 @@ module.exports = {
       }
     },
 
-    async createImage(request, response){
-      const { product_id } = request.query;
-
-      const imagem = {
-        image: request.file.filename,
-        ref_id: product_id
-      }
-      
-      
-     
-  await connection('images').insert(imagem)
-      return response.json(imagem)
-    },
-
-    async listImages(request, response){
-      const { product_id } = request.query;
-
-
-      const imagens = await connection('images')
-        .where({ref_id: product_id})
-        .select('*')
-
-        const serializedImages = imagens.map(image => {
-          return {
-            ...image,
-            image_url: `${process.env.LOCALHOST}/uploads/products/${product_id}/imagesDetails/${image.image}`
-          }
-
-       })
-
-       return response.json(serializedImages)
-
-
-    },
-    
-    async removeImage(request, response){
-      const { product_id, id_image } = request.query;
-
   
-      try {
- 
-       const imagem = await connection('images')
-       .where({ref_id: product_id})
-       .where({id: id_image})
-       .first()
- 
-       console.log(` Primeira Req da Rota  imagem = ${imagem.image}`)
-       
-       const rowsDelete = await connection('images')
-       .where({ref_id: product_id})
-       .where({id: id_image})
-       .first()
-       .del()
- 
-       if(rowsDelete > 0){
-         console.log(` Segunda Req da Rota  imagem = ${imagem.image}`)
-         fs.unlink(`./uploads/products/${product_id}/imagesDetails/${imagem.image}`, err => {
-           if (err) {
-             console.log("falha ao deletar imagem local: \n"+ err );
-         } else {
-             console.log('successfully deleted local image');                                
-         }
-         })
-         
- 
-         const msg = `A Imagem foi Excluida!`
-         return response.send(msg).status(204)
-       } else {
- 
-         return response.send('Nenhuma Imagem foi Excluida.').status(400)
-       }
- 
- 
- 
-     
- 
-      } catch (e){
-       return response.status(500).json(e)
-      }
-    }
   }
   
   
