@@ -25,13 +25,8 @@ const Card = (
      Pricy, 
      image_url, 
      id,
-     imagesDetails,
-     description,
-     disponibility,
-     originalPack,
-     dimensions,
-     peso,
-     material
+     product_id
+   
 
     }) => {
 
@@ -46,9 +41,12 @@ const Card = (
   const Fav = favorite
 
 
+  
+
   useEffect(() => {
     setTimeout(()=>{
       setVisible(()=> !visible)
+      
     },  3000)
   },[])
   const toggleFavorite = (Id) => {
@@ -93,22 +91,8 @@ const Card = (
 <View>
   
 
-    <Touch onPress={() => navigation.navigate('Details',{
-      id,
-      imagesDetails,
-      description,
-      disponibility,
-      originalPack,
-      dimensions,
-      peso,
-      Name, 
-      Marca, 
-      Pricy, 
-      material,
-      Fav,
-      
-      
-    })} activeOpacity={0.9}>
+    <Touch onPress={() => navigation.navigate('Details',{product_id, Fav})}
+     activeOpacity={0.9}>
        <ShimmerPlaceHolder SSpace={Space} 
        style={[styles.LoaderBig, Space ? styles.Margin20 : styles.Margin1  ]} 
        autoRun={true} visible={visible}>
@@ -129,7 +113,7 @@ const Card = (
 
         <InfoContainer> 
           <Title> {Name} </Title>
-          <Mark> {Marca} </Mark>
+          <Mark> {Marca}  </Mark>
 
           <ViewPrice>
             <Price> <Cif>R$</Cif> {Pricy},00 </Price>

@@ -3,7 +3,8 @@ exports.up = function(knex) {
   return knex.schema.createTable('products', table => {
       table.increments('id');
       table.string('image').notNullable();
-      table.string('name').notNullable();
+      table.string('nameMain').notNullable();
+      table.string('nameDetails').notNullable();
       table.integer('price').notNullable();
       table.integer('category').notNullable();
       table.boolean('disponibility').notNullable();

@@ -2,19 +2,23 @@ import React, {useState, useEffect} from 'react'
 import {Header2} from '../components/Header'
 import Label from '../components/LabelInfo'
 import ButtonSimple from '../components/buttonSimple'
-import Carroussel from '../components/Carrousel'
 import MoreScroll from '../components/ScrollMoreProducts'
 import Whats from '../components/buttonWhats'
 import { useRoute} from '@react-navigation/native'
+import api from '../services/api'
 import {products} from '../utils/ApiF'
+import ViewPager from '@react-native-community/viewpager'
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
+import { Bar, Page, Item } from '../components/Carrousel/styles';
 import { 
   View,
+  Image,
   StatusBar,
   StyleSheet,
   Text,
   ScrollView,
   Dimensions } from 'react-native'
+
 const WIDTH = Dimensions.get('window').width
 
 const Detail = () => {
@@ -23,14 +27,34 @@ const Detail = () => {
   const routeParams = route.params;
 
   const [visible, setVisible] = useState(false)
+  const [product, setProduct] = useState([])
+  const [imagesDetails, setImagesDetails] = useState([])
+
+
+  async function loadDetails(){
+    if(routeParams.product_id == null || false){
+      return console.log("Erro não tem id")
+    }
+
+    const response = await api.get(`/product/${routeParams.product_id}`)
+
+      
+      setProduct(response.data)
+      setImagesDetails(response.data.imagesDetails)
+  }
+
  
  
   useEffect(() => {
 
-    setTimeout(()=>{
+    loadDetails()
 
+    setTimeout(()=>{
       setVisible(()=> !visible)
+   
     },  3000)
+
+
   },[])
 
   return (
@@ -48,7 +72,36 @@ const Detail = () => {
             autoRun={true} 
               visible={visible}>
 
-          <Carroussel IMAGENS={routeParams.imagesDetails} />
+
+       
+
+
+   {/* Carrossel */}
+   <ViewPager style={styles.viewPager} initialPage={0}>
+      
+     
+      { imagesDetails.map((imagem, index1) => 
+          (
+          <Page style={styles.page} key={index1}>
+              <Image source={{uri:imagem.imageURL}} style={{height: '100%', width: '100%'}} resizeMode="contain"/>
+             
+              <Bar style={styles.barProcess}>
+  
+                { imagesDetails.map((_, index2) => (
+                  <Item style={
+                    [styles.itemProcess, 
+                      index1 == index2 ? styles.marked : null]
+                  } key={index2} />  )) }    
+              </Bar>
+              
+         </Page>
+        ))
+       }   
+  
+    </ViewPager>
+   {/* Carrossel */}
+
+          
       </ShimmerPlaceHolder>  
 
          <View style={styles.ContDesc}>
@@ -57,7 +110,7 @@ const Detail = () => {
                   autoRun={true} 
                     visible={visible}>
 
-                <Text style={styles.Description}> {routeParams.description} </Text>
+                <Text style={styles.Description}> {product.description} </Text>
               </ShimmerPlaceHolder>   
          </View>
 
@@ -75,7 +128,7 @@ const Detail = () => {
                       visible={visible}> 
                 <Label 
                   property="Nome" 
-                    value={routeParams.Name}/>
+                    value={product.nameDetails}/>
             </ShimmerPlaceHolder>
 
 
@@ -86,7 +139,7 @@ const Detail = () => {
                     visible={visible}>        
               <Label 
                 property="Marca" 
-                value={routeParams.Marca}/>
+                value={product.mark}/>
           </ShimmerPlaceHolder>
 
 
@@ -96,7 +149,7 @@ const Detail = () => {
                     visible={visible}>  
               <Label 
                 property="Embalagem Original" 
-                value={routeParams.originalPack === true ? "Sim": "Não"}/> 
+                value={product.originalPack === true ? "Sim": "Não"}/> 
             </ShimmerPlaceHolder>
 
 
@@ -107,7 +160,7 @@ const Detail = () => {
                     visible={visible}>
               <Label 
                 property="Disponivel" 
-                value={routeParams.disponibility === true ? "Sim": "Não"}/>
+                value={product.disponibility === true ? "Sim": "Não"}/>
            </ShimmerPlaceHolder> 
 
           
@@ -118,7 +171,7 @@ const Detail = () => {
                     visible={visible}>
               <Label 
                 property="Peso" 
-                value={`${routeParams.peso}Kg`}/>
+                value={`${product.peso}g`}/>
             </ShimmerPlaceHolder> 
 
           
@@ -129,7 +182,7 @@ const Detail = () => {
                     visible={visible}>
               <Label 
                 property="Dimensões" 
-                value={routeParams.dimensions}/>
+                value={product.dimensions}/>
              </ShimmerPlaceHolder> 
 
 
@@ -140,7 +193,7 @@ const Detail = () => {
                     visible={visible}> 
                 <Label 
                   property="Material" 
-                  value={routeParams.material}/>
+                  value={product.material}/>
             </ShimmerPlaceHolder>
           
           
@@ -155,7 +208,7 @@ const Detail = () => {
                   style={styles.LoaderButtons}  
                     autoRun={true} 
                       visible={visible}>
-                 <ButtonSimple priceFlag price={routeParams.Pricy}/>
+                 <ButtonSimple priceFlag price={product.price}/>
            </ShimmerPlaceHolder>
 
            <ShimmerPlaceHolder  
@@ -191,6 +244,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#010101',
     alignItems:'center'
   }, 
+  viewPager: {
+    
+    height: 370,
+    width: WIDTH,
+   
+  },
+
+  marked:{
+    backgroundColor: '#DE7672'
+  },
   DetailsContainer:{
     marginTop:50,
     marginBottom:50,
@@ -259,7 +322,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingLeft:10,
     height:'65%',
-    width: '70%',
+    width: '80%',
     paddingHorizontal:"auto",
     marginLeft:15,
     marginTop:45,

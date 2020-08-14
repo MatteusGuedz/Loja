@@ -3,15 +3,29 @@ import { StyleSheet, View, StatusBar, Text,ScrollView, Animated} from 'react-nat
 import { Header1 }from '../components/Header'
 import BotContent from '../components/BotContent'
 import Scroll from '../components/ScrollItem'
-
 import Card from '../components/Card'
 import Whats from '../components/buttonWhats'
-import {products} from '../utils/ApiF'
+
+import api from '../services/api'
 
 
 
 const Explore = () => {
   const [ scrollY, setScrollY] = useState(new Animated.Value(0))
+  const [products, setProducts] = useState([])
+
+
+  async function loadProducts(){
+    const response = await api.get('/products')
+
+      
+      setProducts(response.data)
+  }
+
+
+  useEffect( ()=>{
+    loadProducts()
+  },[])
   
   return (
     <View style={styles.container}>
@@ -35,36 +49,15 @@ const Explore = () => {
     {products.map( product => (
       <Card 
          id={product.id}
-         Name={product.name}
+         Name={product.nameMain}
         Marca={product.mark}
         Pricy={product.price}
-        image_url={product.imageMain_url}   
-        imagesDetails={product.imagesDetails}
-        description={product.description}
-        disponibility={product.disponibility}
-        originalPack={product.originalPack}
-        dimensions={product.dimensions}
-        peso={product.peso}
-        material={product.material}
+        image_url={product.image_url}  
+        product_id={product.product_id} 
       />
     ))} 
 
-{products.map( product => (
-      <Card 
-         id={product.id}
-         Name={product.name}
-        Marca={product.mark}
-        Pricy={product.price}
-        image_url={product.imageMain_url}   
-        imagesDetails={product.imagesDetails}
-        description={product.description}
-        disponibility={product.disponibility}
-        originalPack={product.originalPack}
-        dimensions={product.dimensions}
-        peso={product.peso}
-        material={product.material}
-      />
-    ))}
+
         </BotContent>
 
     </ScrollView>

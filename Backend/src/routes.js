@@ -18,7 +18,7 @@ routes.get('/products', ProductsController.listProduct)
 routes.get('/products/category/:category', ProductsController.listFilter)
 
 routes.put('/product', ProductsController.updateProduct )
-routes.get('/product', ProductsController.listerUnic)
+routes.get('/product/:product_id', ProductsController.listerUnic)
 routes.delete('/product/:id', ProductsController.removeProduct )
 
 

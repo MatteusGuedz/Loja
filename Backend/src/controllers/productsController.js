@@ -10,7 +10,8 @@ module.exports = {
 
       const {
         image,
-        name,
+        nameMain,
+        nameDetails,
         price,
         category,
         disponibility,
@@ -40,7 +41,8 @@ module.exports = {
     
         const product = {
           image,
-          name,
+          nameMain,
+        nameDetails,
           price,
           category,
           disponibility,
@@ -54,6 +56,8 @@ module.exports = {
           quantidade,
           }
 
+
+          
 
          
 
@@ -198,12 +202,13 @@ module.exports = {
 
         const serializedProducts = products.map(product => {
           return {
-            name: product.name,
+            id: product.id,
+            nameMain: product.nameMain,
             price: product.price,
+            mark: product.mark,
             category: product.category,
             product_id: product.product_id,
-            disponibility: product.disponibility,
-            image_url: `${process.env.LOCALHOST}/uploads/products/${product.product_id}/imageMain/${product.image}`
+            image_url: product.image
           }
        })
 
@@ -231,7 +236,7 @@ module.exports = {
     
     async listerUnic(request, response){
       
-      const {product_id} = request.query;   
+      const {product_id} = request.params;   
 
       try {
   
@@ -253,16 +258,16 @@ module.exports = {
         const resultImage = images.map(  img => {
           
             return {
-              imagem: img.image,
+              id: img.id,
               id_product: img.ref_id,
-              img_url:`${process.env.LOCALHOST}/uploads/products/${product_id}/imagesDetails/${img.image}`
+              imageURL:img.imageURL
             }
           })
   
         productDetail = {
           ...product,
           imagesDetails: resultImage,
-          imageMain_url: `${process.env.LOCALHOST}/uploads/products/${product_id}/imageMain/${product.image}`
+
         }
   
        return response.json(productDetail)
